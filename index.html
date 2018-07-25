@@ -3,26 +3,53 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Trivia Game</title>
+    <title>Sports Trivia</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <div class="jumbotron text-center"><h1>Trivia Game</h1></div>
-        <div class="card" style="width: 50rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+
+
+        <div class="jumbotron"><h1 class="text-center display-3">Sports Trivia</h1></div>
+        <div id="opening-message">
+            <p><h4>Welcome to the Sports Trivia game.</h4></p>
+            <p><h4>There are 10 questions that cover a variety of sports.</h4></p>
+            <p><h4>Click the button below to start the game.</h4></p>
+            <p><h4>Good Luck!</h4></p>
+            <div class="col-lg-4 col-md-6"><button class="btn btn-lg btn-primary btn-block">Start Game</button></div>
+        </div>
+
+
+        <div id="question-tile">
+            <p><h4 id="question-number">Question 1</h4></p>
+            <p><h4>Time Left:&nbsp;<span id="counter"></span>10 seconds</h4></p>
+            <p><h4 id="question-words">These are question words</h4></p>
+            <div class="col-lg-4 col-md-6">   
+                <button class="btn btn-lg btn-primary btn-block" value="1">Jim Kelly</button>
+                <button class="btn btn-lg btn-primary btn-block" value="2">John Elway test test test</button>
+                <button class="btn btn-lg btn-primary btn-block" value="3">Dan Marino</button>
+                <button class="btn btn-lg btn-primary btn-block" value="4">Tom Brady</button>
+            </div> 
+        </div>
+
+
+        <div id="answer-tile">
+            <div id="image-div"></div>
+            <div><h4><span id="answer-message"></span></h4></div>
+            <div><h4><span id="number-correct"></span></h4></div>
+            <div class="col-lg-4 col-md-6"><button class="btn btn-lg btn-success btn-block">Next Question</button></div>
+        </div>
+
+
+        <div id="final-score">
+            <div><h4><span id="final-score"></span></h4></div>
+            <div class="col-lg-4 col-md-6"><button class="btn btn-lg btn-primary btn-block">Play Again</button></div>
         </div>
     </div>
+
+    
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
