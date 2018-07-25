@@ -11,7 +11,6 @@ var questions = [
     "This pioneer in women's sport won 2 gold medals in the 1932 Olympics and went on to win 10 major championships as an LPGA Golfer.",
     "This track and field athlete entered the 1936 Olympics in Berlin and took home a record 4 gold medals.",
 ];
-
 var possibleAnswers = [
     ["John Elway", "Tom Brady", "Jim Kelly", "Dan Marino"],
     ["Lance Armstrong", "Eddy Merckx", "Miguel Indurain", "Chris Froome"],
@@ -24,9 +23,7 @@ var possibleAnswers = [
     ["Nancy Lopez", "Billy Jean King", "Babe Didrikson Zaharias", "Anika Sorenstam"],
     ["Carl Lewis", "Usain Bolt", "Michael Phelps", "Jesse Owens"],
 ];
-
 var answers = [2, 1, 3, 2, 0, 3, 1, 0, 2, 3];
-
 var imageName = [
     "kelly.jpg",
     "merckx.jpg",
@@ -38,5 +35,5 @@ var imageName = [
     "thorpe.jpg",
     "babe.jpg",
     "owens.gif",
-]
+];
 
