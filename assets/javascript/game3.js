@@ -82,21 +82,14 @@ $(".answer").on("click", function() {
         counter++;
     }
 
-    // Must put these before if statement below so that they show up properly when game is reloaded.
-    $("#number-correct").show();
-    $("#next-question").show();
-
     // Actions if on final question
     if (counter === 10) {
         $("#number-correct").hide();
         $("#next-question").hide();
         $("#final-score-tile").show();
-        $("#final-score").text("Your final score is " + numberCorrect + "/" + counter + ".");
-        counter = 0;
-        numberCorrect = 0;
     }
 
-    $("#number-correct").text("Score: " + numberCorrect + "/" + counter);
+    $("#number-correct").text("Score: " + numberCorrect + "/" + counter)
     $("#question-tile").hide();
     $("#answer-tile").show();
     
@@ -119,4 +112,6 @@ $("#play-again").on("click", function() {
     $("#answer-tile").hide();
     $("#final-score-tile").hide();
     $("#opening-message").show();
+    counter = 0;
+    numberCorrect = 0;
 });

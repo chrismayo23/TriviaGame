@@ -72,40 +72,36 @@ fillInAnswers();
 // Function to handle answer button click
 $(".answer").on("click", function() {
     var answerValue = parseInt($(this).attr("value"));
-    if (answerValue === answers[counter]) {
+    if (answerValue === answers[counter] && counter < 9) {
         $("#answer-message").text("Yes! " + possibleAnswers[counter][answers[counter]] + " is the correct answer.");
         numberCorrect++;
         counter++;
+        // FIXME: Insert picture into #image-div
+        $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
+        $("#number-correct").text("Score: " + numberCorrect + "/" + counter)
+        $("#question-tile").hide();
+        $("#answer-tile").show();
+        fillInQuestion();
+        fillInAnswers();
     }
-    else {
+    else if (answerValue != answers[counter] && counter < 9)
         $("#answer-message").text("Oh no. " + possibleAnswers[counter][answers[counter]] + " is the correct answer.");
         counter++;
+        // FIXME: Insert picture into #image-div
+        $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
+        $("#number-correct").text("Score: " + numberCorrect + "/" + counter)
+        $("#question-tile").hide();
+        $("#answer-tile").show();
+        fillInQuestion();
+        fillInAnswers();
     }
-
-    // Must put these before if statement below so that they show up properly when game is reloaded.
-    $("#number-correct").show();
-    $("#next-question").show();
 
     // Actions if on final question
     if (counter === 10) {
         $("#number-correct").hide();
         $("#next-question").hide();
         $("#final-score-tile").show();
-        $("#final-score").text("Your final score is " + numberCorrect + "/" + counter + ".");
-        counter = 0;
-        numberCorrect = 0;
     }
-
-    $("#number-correct").text("Score: " + numberCorrect + "/" + counter);
-    $("#question-tile").hide();
-    $("#answer-tile").show();
-    
-    // FIXME: Insert picture into #image-div
-    $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
-    
-    // Fill in text for next question
-    fillInQuestion();
-    fillInAnswers();
 });
 
 // Function to handle #next-question button click
