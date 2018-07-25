@@ -81,6 +81,16 @@ $(".answer").on("click", function() {
         $("#answer-message").text("Oh no. " + possibleAnswers[counter][answers[counter]] + " is the correct answer.");
         counter++;
     }
+    $("#number-correct").text("Score: " + numberCorrect + "/" + counter)
+    $("#question-tile").hide();
+    $("#answer-tile").show();
+
+    // FIXME: Insert picture into #image-div
+    $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
+
+    // Fill in text for next question
+    fillInQuestion();
+    fillInAnswers();
 
     // Actions if on final question
     if (counter === 10) {
@@ -88,16 +98,6 @@ $(".answer").on("click", function() {
         $("#next-question").hide();
         $("#final-score-tile").show();
     }
-    $("#number-correct").text("Score: " + numberCorrect + "/" + counter)
-    $("#question-tile").hide();
-    $("#answer-tile").show();
-    
-    // FIXME: Insert picture into #image-div
-    $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
-    
-    // Fill in text for next question
-    fillInQuestion();
-    fillInAnswers();
 });
 
 // Function to handle next-question button click

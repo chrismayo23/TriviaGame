@@ -19,7 +19,7 @@
             <p><h4>There are 10 questions that cover a variety of sports.</h4></p>
             <p><h4>Click the button below to start the game.</h4></p>
             <p><h4>Good Luck!</h4></p>
-            <div class="col-xl-7 col-lg-6 col-md-8"><button class="btn btn-lg btn-primary btn-block">Start Game</button></div>
+            <div class="col-xl-7 col-lg-6 col-md-8"><button class="btn btn-lg btn-primary btn-block" id="startButton">Start Game</button></div>
         </div>
 
         <div id="question-tile">
@@ -27,10 +27,10 @@
             <p><h5>Time Left:&nbsp;<span id="counter"></span></h5></p>
             <p id="question-words"></p>
             <div class="col-xl-7 col-lg-6 col-md-8">   
-                <button class="btn btn-lg btn-primary btn-block" value="0"></button>
-                <button class="btn btn-lg btn-primary btn-block" value="1"></button>
-                <button class="btn btn-lg btn-primary btn-block" value="2"></button>
-                <button class="btn btn-lg btn-primary btn-block" value="3"></button>
+                <button class="answer btn btn-lg btn-primary btn-block" value="0"></button>
+                <button class="answer btn btn-lg btn-primary btn-block" value="1"></button>
+                <button class="answer btn btn-lg btn-primary btn-block" value="2"></button>
+                <button class="answer btn btn-lg btn-primary btn-block" value="3"></button>
             </div> 
         </div>
 
@@ -41,7 +41,7 @@
             <div class="col-xl-7 col-lg-6 col-md-8"><button class="btn btn-lg btn-success btn-block" id="next-question">Next Question</button></div>
         </div>
 
-        <div id="final-score">
+        <div id="final-score-tile">
             <div><h4><span id="final-score"></span></h4></div>
             <div class="col-xl-7 col-lg-6 col-md-8"><button class="btn btn-lg btn-primary btn-block" id="play-again">Play Again</button></div>
         </div>
