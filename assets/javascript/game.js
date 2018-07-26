@@ -27,14 +27,14 @@ var answers = [2, 1, 3, 2, 0, 3, 1, 0, 2, 3];
 var imageName = [
     "kelly.jpg",
     "merckx.jpg",
-    "flojo.gif",
+    "flojo.jpg",
     "serena.jpg",
-    "mickey.png",
+    "mickey.jpg",
     "lebron.gif",
     "jones.jpg",
     "thorpe.jpg",
     "babe.jpg",
-    "owens.gif",
+    "owens.jpg",
 ];
 
 // Hide other tiles upon loading
@@ -82,12 +82,21 @@ $(".answer").on("click", function() {
         counter++;
     }
 
-    // Must put these before if statement below so that they show up properly when game is reloaded.
+    // Put these before if statement below so that they show up properly when game is reloaded.
     $("#number-correct").show();
     $("#next-question").show();
 
+    // Insert picture into #image-div
+    $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[counter - 1]));
+
+    // Content and showing #answer-tile
+    $("#number-correct").text("Score: " + numberCorrect + "/" + counter);
+    $("#question-tile").hide();
+    $("#answer-tile").show();
+
     // Actions if on final question
     if (counter === 10) {
+        $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[counter - 1]));
         $("#number-correct").hide();
         $("#next-question").hide();
         $("#final-score-tile").show();
@@ -96,14 +105,7 @@ $(".answer").on("click", function() {
         numberCorrect = 0;
     }
 
-    $("#number-correct").text("Score: " + numberCorrect + "/" + counter);
-    $("#question-tile").hide();
-    $("#answer-tile").show();
-    
-    // FIXME: Insert picture into #image-div
-    $("#image-div").html('<img src="assets/images/' + imageName[counter - 1] + '"')
-    
-    // Fill in text for next question
+    // Fill in text for next question. TODO: This has to be after "if (counter=10)""
     fillInQuestion();
     fillInAnswers();
 });
