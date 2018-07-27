@@ -32,7 +32,7 @@ var imageName = [
     "babe.jpg",
     "merckx.jpg",
     "flojo.jpg",
-    "mickey.jpg",
+    "mickey.png",
     "lebron.gif",
     "jones.jpg",
 ];
