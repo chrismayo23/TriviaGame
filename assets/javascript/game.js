@@ -46,40 +46,43 @@ $("#final-score-tile").hide();
 $("#startButton").on("click", function() {
     $("#opening-message").hide();
     $("#question-tile").show();
+    run();
 });
 
-// Initalize counter variable to designate which question we are on.
+// Initalize count variable to designate which question we are on.
 // numberCorrect to designate number right answers.
-var counter = 0
-var numberCorrect = 0
+var count = 0;
+var numberCorrect = 0;
 
 // Function to fill in the #question-tile with info.
 var fillInQuestion = function() {
-    $("#question-number").text(counter + 1);
-    $("#question-words").text(questions[counter]);
+    $("#question-number").text(count + 1);
+    $("#question-words").text(questions[count]);
 }
 fillInQuestion();
 
 // Function to fill in possible answers
 var fillInAnswers = function() {
-    $("[value=0]").text(possibleAnswers[counter][0]);
-    $("[value=1]").text(possibleAnswers[counter][1]);
-    $("[value=2]").text(possibleAnswers[counter][2]);
-    $("[value=3]").text(possibleAnswers[counter][3]);
+    $("[value=0]").text(possibleAnswers[count][0]);
+    $("[value=1]").text(possibleAnswers[count][1]);
+    $("[value=2]").text(possibleAnswers[count][2]);
+    $("[value=3]").text(possibleAnswers[count][3]);
 }
 fillInAnswers();
 
 // Function to handle answer button click
 $(".answer").on("click", function() {
     var answerValue = parseInt($(this).attr("value"));
-    if (answerValue === answers[counter]) {
-        $("#answer-message").text("Yes! " + possibleAnswers[counter][answers[counter]] + " is the correct answer.");
+    if (answerValue === answers[count]) {
+        $("#answer-message").text("Yes! " + possibleAnswers[count][answers[count]] + " is the correct answer.");
         numberCorrect++;
-        counter++;
+        count++;
+        stop();
     }
     else {
-        $("#answer-message").text("Oh no. " + possibleAnswers[counter][answers[counter]] + " is the correct answer.");
-        counter++;
+        $("#answer-message").text("Oh no. " + possibleAnswers[count][answers[count]] + " is the correct answer.");
+        count++;
+        stop();
     }
 
     // Put these before if statement below so that they show up properly when game is reloaded.
@@ -87,25 +90,23 @@ $(".answer").on("click", function() {
     $("#next-question").show();
 
     // Insert picture into #image-div
-    $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[counter - 1]));
+    $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[count - 1]));
 
     // Content and showing #answer-tile
-    $("#number-correct").text("Score: " + numberCorrect + "/" + counter);
+    $("#number-correct").text("Score: " + numberCorrect + "/" + count);
     $("#question-tile").hide();
     $("#answer-tile").show();
 
     // Actions if on final question
-    if (counter === 10) {
-        $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[counter - 1]));
+    if (count === 10) {
+        $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[count - 1]));
         $("#number-correct").hide();
         $("#next-question").hide();
         $("#final-score-tile").show();
-        $("#final-score").text("Your final score is " + numberCorrect + "/" + counter + ".");
-        counter = 0;
-        numberCorrect = 0;
+        $("#final-score").text("Your final score is: " + numberCorrect + "/" + count);
     }
 
-    // Fill in text for next question. TODO: This has to be after "if (counter=10)""
+    // Fill in text for next question. TODO: This has to be after "if (count=10)""
     fillInQuestion();
     fillInAnswers();
 });
@@ -114,11 +115,61 @@ $(".answer").on("click", function() {
 $("#next-question").on("click", function() {
     $("#answer-tile").hide();
     $("#question-tile").show();
+    fillInQuestion();
+    fillInAnswers();
+    run();
 });
 
 // Function to handle #play-again button click.
 $("#play-again").on("click", function() {
+    count = 0;
+    numberCorrect = 0;
+    fillInQuestion();
+    fillInAnswers();
     $("#answer-tile").hide();
     $("#final-score-tile").hide();
     $("#opening-message").show();
+    $("#next-question").show();
+    $("#answer-message").show();
+    $("#number-correct").show();
 });
+
+// Timer related functions
+var number;
+var intervalId;
+
+function run() {
+    $("#counter").text("15")
+    number = 15;
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+}
+
+function decrement() {
+    number--
+    $("#counter").text(number)
+    if (number === 0) {
+        if (count === 9) {
+            $("#answer-message").text("Out of time. " + possibleAnswers[count][answers[count]] + " is the correct answer.");
+            count++
+            $("#question-tile").hide();
+            $("#answer-tile").show();
+            $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[count - 1]));
+            $("#number-correct").hide();
+            $("#next-question").hide();
+            $("#final-score-tile").show();
+            $("#final-score").text("Your final score is: " + numberCorrect + "/" + count);
+        } else {
+            $("#answer-message").text("Out of time. " + possibleAnswers[count][answers[count]] + " is the correct answer.");
+            count++;
+            $("#question-tile").hide();
+            $("#answer-tile").show();
+            $("#image-div").html($("<img>").attr('src', 'assets/images/' + imageName[count - 1]));
+            $("#number-correct").text("Score: " + numberCorrect + "/" + count); 
+        } 
+    }
+}
+
+function stop() {
+    clearInterval(intervalId);
+}
